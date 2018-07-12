@@ -1,0 +1,196 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+//static object methods
+namespace carSalesStaticMethod
+{
+    public class Cars
+    {
+        public string make = "";
+        public string model = "";
+        public int price = 0;
+        public bool sold = true;
+
+        public static int carsForSale = 0;
+
+        public void carDescription(string make, string model, int price)
+        {
+            this.make = make;
+            this.model = model;
+            this.price = price;
+            this.sold = false;
+
+            carsForSale++;
+        }
+
+        public void DisplayCars()
+        {
+            Console.WriteLine("Make: {0}\nModel: {1}\n Price: £{2}.", make, model, price);
+            if (sold)
+            {
+                Console.WriteLine("This car has been sold");
+            }
+            else
+            {
+                Console.WriteLine("The car is still available to buy.");
+            }
+            Console.WriteLine();
+        }
+        public void SellCar(int price)
+        {
+            this.sold = true;
+            this.price = price;
+
+            carsForSale--;
+
+            Console.WriteLine("The car {0} has been sold for £{1}.", this.make, this.price);
+            Console.WriteLine();
+        }
+        public static void DisplayAllCars(List<Cars> carsList)
+        {
+            int totalValueSold = 0;
+            int totalValueAvailable = 0;
+
+            Console.WriteLine("The details of the cars on our books are: ");
+            Console.WriteLine();
+        }
+        // All I had to do was declare the list of cars in the Main Program below - set out the method - all cars - add each car using allcars.add and then call the method to display all the cars.
+    }
+}
+
+// unstatic methods
+namespace carObjects.cs
+{
+    public class Cars
+    {
+        //initialise the objects, non-static and static
+        //non-static fields
+        // essentially initialising the objects within the class, without the values, in this class program.
+        public string make = "";
+        public string model = "";
+        public int mileage = 0;
+        public int price = 0;
+        public bool sold = true;
+        public int soldPrice = 0;
+
+        //static field
+        public static int totalNumberOfCars = 0;
+        //public static int totalPriceOfCars = 0;
+        public static int carsForSale = 0;
+        public static int totalStockValue;
+
+        public void carDetails (string make, string model, int mileage, int price, bool sold)
+        {
+            this.make = make;
+            this.model = model;
+            this.mileage = mileage;
+            this.price = price;
+            this.sold = sold;
+
+            totalNumberOfCars++;
+        }
+
+        //public void soldCar(int soldPrice)
+        //{
+        //    this.sold = true;
+        //    this.soldPrice = soldPrice;
+        //}
+        //public void announceSalePrice()
+        //{
+        //    //finish this! new instance method to call
+        //    // cw ("string, paraments {}; var1, var2")
+        //    // add to each non-static car with details
+        //    //call this for each SOLD car - e.g. where the method is relevant
+        //}
+
+        public void displayCarDetails()
+        {
+            Console.WriteLine("Car Make: {0} \nCar Model: {1}\nMileage: {2}miles\nPrice: £{3}.", make, model, mileage, price);
+            if (sold)
+            {
+                Console.WriteLine("This car has now been sold in store, please enquire for ordering or further details");
+            }
+            else
+            {
+                Console.WriteLine("This car is in stock and available to take away today!");
+            }
+            Console.WriteLine();
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Now add values to the fields above in the first class. 
+            // initialising static variable
+            // essentially setting the values to the objects within the class, in the Main program.
+            //Cars.totalNumberOfCars = 0;
+            //Cars.totalPriceOfCars = 0;
+
+            //instatiating the Car object and adding values to the non static fields.
+            //incrementing the static variables each time a car is added and a price value is set in this example. 
+
+            Cars car1 = new Cars(); //needed for each new entry or intance to the main class/Object
+            car1.carDetails("Porsche", "Carrera", 30000, 120000, false);
+            //car1.make = "Porsche"; // this is the clunky way to do it without using instance object methods
+            //car1.model = "Carrera";
+            //car1.mileage = 30000;
+            //car1.price = 120000;
+            //car1.sold = false;
+            //Cars.totalNumberOfCars++;
+            car1.displayCarDetails();
+
+
+            Cars car2 = new Cars(); //needed for each new entry or intance to the main class/Object
+            car2.carDetails("Maserati", "Sport Rapide", 50000, 160000, true);
+            //car2.make = "Maserati";
+            //car2.model = "Sport Rapide";
+            //car2.mileage = 50000;
+            //car2.price = 160000;
+            //car2.sold = false;
+            //Cars.totalNumberOfCars++;
+            // incrementing added to each instance which has been set within the class.
+            car2.displayCarDetails();
+
+            Cars car3 = new Cars(); //needed for each new entry or intance to the main class/Object
+            car3.carDetails("Maserati", "Sport Rapide", 50000, 160000, false);
+            //car3.make = "Mercedes";
+            //car3.model = "C-Class";
+            //car3.mileage = 10000;
+            //car3.price = 220000;
+            //car3.sold = false;
+            //Cars.totalNumberOfCars++;
+            // incrementing added to each instance which has been set within the class.
+            car3.displayCarDetails();
+
+            Cars car4 = new Cars(); //needed for each new entry or intance to the main class/Object
+            car4.carDetails("BMW", "Esposito", 130000, 20000, true);
+            //car4.make = "BMW";
+            //car4.make = "Espositio";
+            //car4.mileage = 130000;
+            //car4.price = 20000;
+            //car4.sold = false;
+            //Cars.totalNumberOfCars++;
+            // incrementing added to each instance which has been set within the class.
+            car4.displayCarDetails();
+
+            //displaying the details of the car
+            //Console.WriteLine("These are the details of the most sough-out cars in the garage");
+            //Console.WriteLine();
+            //Console.WriteLine("The " + car1.make + " has done " + car1.mileage + " mileage and is currently\nvalued at: "  + "£" +  car1.price);
+            //Console.WriteLine();
+            //Console.WriteLine("The " + car2.make + " has done " + car2.mileage + " mileage and is currently\nvalued at: " + "£" + car2.price);
+            //Console.WriteLine();
+            //Console.WriteLine("The " + car3.make + " has done " + car3.mileage + " mileage and is currently\nvalued at: " + "£" + car3.price);
+            //Console.WriteLine();
+            //Console.WriteLine("The " + car4.make + " has done " + car4.mileage + " mileage and is currently\nvalued at: " + "£" + car4.price);
+            //Console.WriteLine();
+            //Console.WriteLine(/*"The total cost of these cars amount to £ " + Cars.totalPriceOfCars + " . That's the price for all "*/ "The number of cars in the garage: " + Cars.totalNumberOfCars  /*" of them."*/);
+
+        }
+    }
+}
